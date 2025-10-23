@@ -1,0 +1,33 @@
+{
+    "name": "lcnc-ecommerce",
+    "version": "1.0.0",
+    "description": "Low-code/No-code E-commerce Platform with Multi-tenancy",
+    "private": true,
+    "workspaces": [
+        "client",
+        "server",
+        "auth"
+    ],
+    "scripts": {
+        "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+        "dev:client": "npm run dev --workspace=client",
+        "dev:server": "npm run dev --workspace=server",
+        "build": "npm run build --workspace=client && npm run build --workspace=server",
+        "start": "npm run start --workspace=server",
+        "db:migrate": "npx prisma migrate dev",
+        "db:studio": "npx prisma studio",
+        "db:generate": "npx prisma generate",
+        "lint": "npm run lint --workspace=client",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
+    },
+    "devDependencies": {
+        "@prisma/client": "^5.8.0",
+        "concurrently": "^8.2.2",
+        "prettier": "^3.1.1",
+        "prisma": "^5.8.0"
+    },
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=9.0.0"
+    }
+}

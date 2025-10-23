@@ -1,0 +1,251 @@
+{
+  "id": "sample-project-1",
+  "name": "Sample Landing Page",
+  "pages": [
+    {
+      "id": "page-home",
+      "name": "Home",
+      "slug": "/",
+      "tree": [
+        {
+          "id": "body-root-1",
+          "type": "Body",
+          "props": {},
+          "styles": {
+            "backgroundColor": "#ffffff",
+            "color": "#000000",
+            "fontFamily": "system-ui, -apple-system, sans-serif",
+            "minHeight": "100vh"
+          },
+          "metadata": {
+            "name": "Body",
+            "locked": false
+          },
+          "children": [
+            {
+              "id": "header-1",
+              "type": "Section",
+              "props": {
+                "role": "banner"
+              },
+              "styles": {
+                "padding": "16px 24px",
+                "backgroundColor": "#ffffff",
+                "borderBottom": "1px solid #e5e7eb",
+                "display": "flex",
+                "justifyContent": "space-between",
+                "alignItems": "center"
+              },
+              "metadata": {
+                "name": "Header"
+              },
+              "children": [
+                {
+                  "id": "logo-1",
+                  "type": "Text",
+                  "props": {
+                    "text": "My Brand",
+                    "tag": "h1"
+                  },
+                  "styles": {
+                    "fontSize": "24px",
+                    "fontWeight": "700",
+                    "color": "#1f2937",
+                    "margin": "0"
+                  },
+                  "metadata": {
+                    "name": "Logo"
+                  },
+                  "children": []
+                },
+                {
+                  "id": "nav-1",
+                  "type": "Div",
+                  "props": {},
+                  "styles": {
+                    "display": "flex",
+                    "gap": "24px"
+                  },
+                  "metadata": {
+                    "name": "Navigation"
+                  },
+                  "children": [
+                    {
+                      "id": "nav-link-1",
+                      "type": "Text",
+                      "props": {
+                        "text": "Home",
+                        "tag": "a"
+                      },
+                      "styles": {
+                        "color": "#4b5563",
+                        "textDecoration": "none",
+                        "cursor": "pointer"
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "nav-link-2",
+                      "type": "Text",
+                      "props": {
+                        "text": "About",
+                        "tag": "a"
+                      },
+                      "styles": {
+                        "color": "#4b5563",
+                        "textDecoration": "none",
+                        "cursor": "pointer"
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "nav-link-3",
+                      "type": "Text",
+                      "props": {
+                        "text": "Contact",
+                        "tag": "a"
+                      },
+                      "styles": {
+                        "color": "#4b5563",
+                        "textDecoration": "none",
+                        "cursor": "pointer"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "hero-1",
+              "type": "Section",
+              "props": {},
+              "styles": {
+                "padding": "64px 24px",
+                "backgroundColor": "#f8fafc",
+                "textAlign": "center"
+              },
+              "metadata": {
+                "name": "Hero Section"
+              },
+              "children": [
+                {
+                  "id": "hero-container-1",
+                  "type": "Div",
+                  "props": {},
+                  "styles": {
+                    "maxWidth": "1200px",
+                    "margin": "0 auto"
+                  },
+                  "children": [
+                    {
+                      "id": "h1-1",
+                      "type": "Text",
+                      "props": {
+                        "text": "Welcome to Our Platform",
+                        "tag": "h1"
+                      },
+                      "styles": {
+                        "fontSize": "48px",
+                        "fontWeight": "700",
+                        "color": "#1f2937",
+                        "marginBottom": "16px"
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "subtitle-1",
+                      "type": "Text",
+                      "props": {
+                        "text": "Build amazing websites with our no-code platform",
+                        "tag": "p"
+                      },
+                      "styles": {
+                        "fontSize": "20px",
+                        "color": "#6b7280",
+                        "marginBottom": "32px"
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "cta-button-1",
+                      "type": "Button",
+                      "props": {
+                        "text": "Get Started"
+                      },
+                      "styles": {
+                        "padding": "12px 32px",
+                        "fontSize": "16px",
+                        "fontWeight": "600",
+                        "backgroundColor": "#3b82f6",
+                        "color": "#ffffff",
+                        "border": "none",
+                        "borderRadius": "8px",
+                        "cursor": "pointer",
+                        "marginBottom": "32px"
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "hero-image-1",
+                      "type": "Image",
+                      "props": {
+                        "src": "/placeholder-hero.jpg",
+                        "alt": "Hero Image"
+                      },
+                      "styles": {
+                        "width": "100%",
+                        "maxWidth": "800px",
+                        "height": "auto",
+                        "borderRadius": "12px",
+                        "boxShadow": "0 10px 30px rgba(0, 0, 0, 0.1)"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "footer-1",
+              "type": "Section",
+              "props": {
+                "role": "contentinfo"
+              },
+              "styles": {
+                "padding": "32px 24px",
+                "backgroundColor": "#1f2937",
+                "color": "#ffffff",
+                "textAlign": "center"
+              },
+              "metadata": {
+                "name": "Footer"
+              },
+              "children": [
+                {
+                  "id": "footer-text-1",
+                  "type": "Text",
+                  "props": {
+                    "text": "© 2025 My Brand. All rights reserved.",
+                    "tag": "p"
+                  },
+                  "styles": {
+                    "margin": "0",
+                    "color": "#9ca3af"
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "createdAt": "2025-10-22T18:35:17.495Z",
+    "updatedAt": "2025-10-22T18:35:22.700Z",
+    "description": "A sample landing page template with Body root, header, hero, and footer",
+    "environment": "builder"
+  }
+}
