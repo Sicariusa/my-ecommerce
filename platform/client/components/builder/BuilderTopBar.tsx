@@ -25,11 +25,13 @@ import {
     Check,
     AlertCircle,
     Loader2,
+    Sparkles,
 } from 'lucide-react';
 import { useBuilderStore } from '@/lib/stores/useBuilderStore';
 import { useThemeStore } from '@/lib/stores/useThemeStore';
 import { useAutoSave } from '@/lib/hooks/useAutoSave';
 import { EnhancedDeploymentModal } from './EnhancedDeploymentModal';
+import { EnhanceWithAI } from './EnhanceWithAI';
 import toast from 'react-hot-toast';
 
 interface BuilderTopBarProps {
@@ -40,10 +42,12 @@ interface BuilderTopBarProps {
 export function BuilderTopBar({ projectId, projectName }: BuilderTopBarProps) {
     const router = useRouter();
     const [isDeployModalOpen, setIsDeployModalOpen] = useState(false);
+    const [isEnhanceModalOpen, setIsEnhanceModalOpen] = useState(false);
     const [isPreviewMode, setIsPreviewMode] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
 
     const project = useBuilderStore((state) => state.project);
+    const setProject = useBuilderStore((state) => state.setProject);
     const undo = useBuilderStore((state) => state.undo);
     const redo = useBuilderStore((state) => state.redo);
     const canUndo = useBuilderStore((state) => state.canUndo());
@@ -137,6 +141,20 @@ export function BuilderTopBar({ projectId, projectName }: BuilderTopBarProps) {
         }
     };
 
+    const handleProjectEnhanced = (enhancedProject: any) => {
+        setProject(enhancedProject);
+        setIsEnhanceModalOpen(false);
+        toast.success('Your project has been enhanced!');
+    };
+
+    const handleEnhanceClick = () => {
+        if (!project || !project.pages || project.pages.length === 0) {
+            toast.error('Add at least one page before enhancing');
+            return;
+        }
+        setIsEnhanceModalOpen(true);
+    };
+
     return (
         <>
             <div className="h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 z-50">
@@ -183,6 +201,18 @@ export function BuilderTopBar({ projectId, projectName }: BuilderTopBarProps) {
                             <Redo className="w-4 h-4 text-gray-700 dark:text-gray-300" />
                         </button>
                     </div>
+
+                    <div className="border-l border-gray-300 dark:border-gray-700 h-8" />
+
+                    {/* Enhance with AI */}
+                    <button
+                        onClick={handleEnhanceClick}
+                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg transition-all shadow-sm hover:shadow-md"
+                        title="Enhance with AI"
+                    >
+                        <Sparkles className="w-4 h-4" />
+                        <span className="text-sm font-medium">Enhance with AI</span>
+                    </button>
 
                     <div className="border-l border-gray-300 dark:border-gray-700 h-8" />
 
@@ -300,6 +330,19 @@ export function BuilderTopBar({ projectId, projectName }: BuilderTopBarProps) {
                 isOpen={isDeployModalOpen}
                 onClose={() => setIsDeployModalOpen(false)}
             />
+
+            {/* Enhancement Modal */}
+            {isEnhanceModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                    <div className="w-full max-w-2xl max-h-[90vh] bg-white dark:bg-gray-900 rounded-xl shadow-2xl overflow-hidden">
+                        <EnhanceWithAI
+                            project={project}
+                            onProjectEnhanced={handleProjectEnhanced}
+                            onClose={() => setIsEnhanceModalOpen(false)}
+                        />
+                    </div>
+                </div>
+            )}
         </>
     );
 }
