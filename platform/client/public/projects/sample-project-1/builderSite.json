@@ -135,7 +135,11 @@
                   "props": {},
                   "styles": {
                     "maxWidth": "1200px",
-                    "margin": "0 auto"
+                    "margin": "0 auto",
+                    "backgroundColor": "#dbeafe",
+                    "padding": "64px 48px",
+                    "borderRadius": "16px",
+                    "textAlign": "center"
                   },
                   "children": [
                     {
@@ -161,8 +165,11 @@
                         "tag": "p"
                       },
                       "styles": {
-                        "fontSize": "20px",
-                        "color": "#6b7280",
+                        "fontSize": "22px",
+                        "fontWeight": "500",
+                        "color": "#374151",
+                        "lineHeight": "1.6",
+                        "letterSpacing": "-0.01em",
                         "marginBottom": "32px"
                       },
                       "children": []
@@ -243,8 +250,8 @@
     }
   ],
   "metadata": {
-    "createdAt": "2025-10-23T20:15:19.437Z",
-    "updatedAt": "2025-10-23T20:17:35.385Z",
+    "createdAt": "2025-10-23T20:41:53.466Z",
+    "updatedAt": "2025-10-23T20:46:30.966Z",
     "description": "A sample landing page template with Body root, header, hero, and footer",
     "environment": "builder"
   }
