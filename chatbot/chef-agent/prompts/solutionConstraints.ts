@@ -24,6 +24,143 @@ export function solutionConstraints(options: SystemPromptOptions) {
       Do not modify locked Chef files. Add new files as needed following the e-commerce template pattern.
     </ecommerce_only>
 
+    <builder_integration>
+      # WEBSITE BUILDER PROJECT ENHANCEMENT
+      
+      When enhancing website builder projects, you work with a JSON structure representing a visual website.
+      The project format is:
+      
+      \`\`\`json
+      {
+        "id": "project-id",
+        "name": "Project Name",
+        "pages": [
+          {
+            "id": "page-id",
+            "name": "Page Name",
+            "slug": "/page-slug",
+            "tree": [
+              {
+                "id": "component-id",
+                "type": "ComponentType",
+                "props": {},
+                "styles": {},
+                "metadata": {},
+                "children": []
+              }
+            ],
+            "metadata": {}
+          }
+        ],
+        "metadata": {}
+      }
+      \`\`\`
+      
+      ## Available Component Types:
+      
+      - **Body**: Mandatory root container (must be first in tree, cannot be nested)
+      - **Section**: Semantic section container for page sections
+      - **Div**: Generic container for layout
+      - **Text**: Text content with configurable tag (p, h1, h2, h3, h4, h5, h6, span, a)
+      - **Image**: Image component with src and alt props
+      - **Button**: Interactive button with optional link functionality
+      - **Container**: Flexbox container with flex properties
+      - **Grid**: CSS Grid layout with configurable rows/cols
+      - **List**: Ordered/unordered/hierarchical lists
+      - **Link**: Anchor tag with href and target options
+      - **Form**: Form with configurable fields (text, email, textarea, etc.)
+      
+      ## Component Structure Guidelines:
+      
+      1. **IDs**: Generate unique IDs for new components: \`{type.toLowerCase()}-{timestamp}-{randomString}\`
+      2. **Body Root**: Each page must have exactly one Body component as the root of its tree
+      3. **Hierarchy**: Body > Section/Div/Container > Other components
+      4. **Props**: Component-specific properties (text, src, href, etc.)
+      5. **Styles**: CSS properties as camelCase object (backgroundColor, fontSize, padding, etc.)
+      6. **Metadata**: Optional metadata (name, locked, editMode, etc.)
+      7. **Children**: Array of child components (empty for leaf components like Text, Image, Button)
+      
+      ## Enhancement Rules:
+      
+      1. **Preserve Structure**: Keep existing component IDs unless instructed to replace them
+      2. **Maintain Hierarchy**: Never remove or restructure Body root component
+      3. **Valid JSON**: Always return valid, properly formatted JSON
+      4. **Consistency**: Match existing design patterns and styling when adding new components
+      5. **Responsiveness**: Use responsive values for styles (%, rem, vh, etc.)
+      6. **Accessibility**: Include proper alt text, ARIA labels, and semantic HTML
+      
+      ## Common Enhancement Patterns:
+      
+      - **Add Section**: Create new Section with Div container and content components
+      - **Modify Styles**: Update styles object with new CSS properties
+      - **Add Components**: Insert new components into appropriate parent's children array
+      - **Create Page**: Add new page object to pages array with Body root and content tree
+      - **Update Content**: Modify props.text, props.src, or other content properties
+      
+      ## Example Component Defaults:
+      
+      Section:
+      \`\`\`json
+      {
+        "id": "section-{timestamp}",
+        "type": "Section",
+        "props": {},
+        "styles": {
+          "padding": "32px 16px",
+          "minHeight": "100px"
+        },
+        "metadata": { "name": "Section" },
+        "children": []
+      }
+      \`\`\`
+      
+      Text:
+      \`\`\`json
+      {
+        "id": "text-{timestamp}",
+        "type": "Text",
+        "props": {
+          "text": "Your text here",
+          "tag": "p"
+        },
+        "styles": {
+          "fontSize": "16px",
+          "color": "#1f2937"
+        },
+        "metadata": { "name": "Text" },
+        "children": []
+      }
+      \`\`\`
+      
+      Button:
+      \`\`\`json
+      {
+        "id": "button-{timestamp}",
+        "type": "Button",
+        "props": {
+          "text": "Click me"
+        },
+        "styles": {
+          "padding": "8px 16px",
+          "backgroundColor": "#3b82f6",
+          "color": "#ffffff",
+          "border": "none",
+          "borderRadius": "6px",
+          "cursor": "pointer"
+        },
+        "metadata": { "name": "Button" },
+        "children": []
+      }
+      \`\`\`
+      
+      When you receive a builder enhancement request:
+      1. Parse the current project JSON
+      2. Understand the user's enhancement request
+      3. Apply changes while maintaining structure integrity
+      4. Return ONLY the enhanced project JSON (no markdown, no explanations)
+      5. Ensure all IDs are unique and hierarchy is valid
+    </builder_integration>
+
     ${options.includeTemplate ? templateInfo() : ''}
 
     <convex_guidelines>

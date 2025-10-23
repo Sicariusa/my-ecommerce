@@ -62,6 +62,9 @@ interface BuilderState {
     copyNode: (nodeId: string) => void;
     pasteNode: (parentId: string | null) => void;
 
+    // Actions - AI Enhancement
+    enhanceWithAI: (prompt: string) => Promise<{ success: boolean; error?: string }>;
+
     // Actions - History
     pushHistory: () => void;
     undo: () => void;
@@ -743,6 +746,57 @@ export const useBuilderStore = create<BuilderState>()(
 
                 const clonedNode = cloneNode(clipboard);
                 get().addNode(parentId, clonedNode.type);
+            },
+
+            // AI Enhancement
+            enhanceWithAI: async (prompt: string) => {
+                const { project } = get();
+                if (!project) {
+                    return { success: false, error: 'No project to enhance' };
+                }
+
+                try {
+                    const response = await fetch('/api/builder/enhance', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            project,
+                            enhancementPrompt: prompt,
+                        }),
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        return { 
+                            success: false, 
+                            error: data.error || 'Enhancement failed' 
+                        };
+                    }
+
+                    if (data.project) {
+                        // Update the project with enhanced version
+                        set({
+                            project: data.project,
+                            activePageId: data.project.pages[0]?.id || null,
+                        });
+
+                        // Push to history
+                        get().pushHistory();
+
+                        return { success: true };
+                    }
+
+                    return { success: false, error: 'No enhanced project returned' };
+                } catch (error) {
+                    console.error('AI enhancement error:', error);
+                    return { 
+                        success: false, 
+                        error: error instanceof Error ? error.message : 'An unexpected error occurred' 
+                    };
+                }
             },
 
             // History operations (simplified - full implementation would track each change)

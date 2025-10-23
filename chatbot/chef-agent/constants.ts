@@ -12,6 +12,21 @@ export const SUGGESTIONS = [
 - Role-based access control (user and admin roles)
 - Real-time updates for product availability and order status`,
   },
+  {
+    title: 'Enhance Website Builder Project',
+    prompt: `Enhance an existing website builder project by modifying the project JSON structure. The project contains pages with component trees, where each component has an id, type, props, styles, metadata, and children.
+
+Available component types: Body (root), Section, Div, Text, Image, Button, Container, Grid, List, Link, Form
+
+When enhancing:
+- Preserve existing component IDs unless creating new components
+- Maintain the project JSON structure exactly
+- Add new pages or modify existing ones as requested
+- Update component properties, styles, and structure
+- Ensure all changes are valid and maintain hierarchy (Body must be root)
+
+Example enhancement: "Add a contact form section with name, email, and message fields to the home page"`,
+  },
 ];
 
 export const WORK_DIR_NAME = 'project';
@@ -28,6 +43,9 @@ export const PREWARM_PATHS = [
   `${WORK_DIR}/src/pages/HomePage.tsx`,
   `${WORK_DIR}/src/components/ProductCard.tsx`,
   `${WORK_DIR}/src/index.css`,
+  // Builder-related paths
+  `${WORK_DIR}/builder/project.json`,
+  `${WORK_DIR}/builder/components`,
 ];
 
 // A list of files that we block the LLM from modifying
