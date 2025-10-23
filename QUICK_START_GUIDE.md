@@ -7,60 +7,33 @@ Follow these steps to use the "Enhance with AI" feature in the website builder:
 ## Prerequisites
 
 1. Node.js (v18 or higher)
-2. pnpm (for Chef backend)
-3. A Convex account (free at https://convex.dev)
-4. An Anthropic API key (or OpenAI, Google, etc.)
+2. A Google AI API key (free at https://aistudio.google.com/app/apikey)
 
-## Step 1: Start the Chef AI Backend
+## Step 1: Add Your Google API Key
 
-The Chef AI agent must be running for enhancement to work.
+Create `platform/client/.env.local` with your Google API key:
 
-```bash
-# Terminal 1 - Chef Backend
-cd chatbot
-pnpm install  # Only needed first time
-
-# Create .env.local with your API keys
-echo 'VITE_CONVEX_URL=placeholder' >> .env.local
-echo 'ANTHROPIC_API_KEY=your_key_here' >> .env.local
-
-# Start the frontend
-pnpm run dev
+```env
+GOOGLE_API_KEY=your_google_api_key_here
 ```
 
-This starts the Chef AI agent on **http://localhost:5173** or **http://127.0.0.1:5173**
+**Get a free API key**: https://aistudio.google.com/app/apikey
 
-## Step 2: Start Convex (Required for Chef)
-
-```bash
-# Terminal 2 - Convex Backend  
-cd chatbot
-npx convex dev
-```
-
-**First time setup**: Follow the prompts to:
-- Create a Convex project
-- Link it to your account
-- This will update your `.env.local` with the correct `VITE_CONVEX_URL`
-
-## Step 3: Set up Chef Authentication
-
-You need to sign into Chef before the builder can use it:
-
-1. Open **http://127.0.0.1:5173** in your browser (use 127.0.0.1, not localhost)
-2. Sign in with your Convex account
-3. Keep this tab open (Chef session needed for API calls)
-
-## Step 4: Start the Platform/Builder
+## Step 2: Install Dependencies
 
 ```bash
-# Terminal 3 - Website Builder
 cd platform/client
-npm install  # Only needed first time
+npm install @google/generative-ai
+```
+
+## Step 3: Start the Builder
+
+```bash
+cd platform/client
 npm run dev
 ```
 
-This starts the builder on **http://localhost:3000**
+The builder will run on **http://localhost:3000**
 
 ## Step 4: Use the Enhancement Feature
 
@@ -72,9 +45,11 @@ This starts the builder on **http://localhost:3000**
    - "Add a contact form section with name, email, and message fields"
    - "Make the design more modern with better spacing and colors"
    - "Add a features section with 3 columns showcasing key benefits"
-   - And more...
+   - "Improve the hero section with a better call-to-action"
+   - "Add a testimonials section with customer reviews"
+   - "Create a pricing section with 3 tiers"
 6. Click **"Enhance Project"**
-7. Wait for the AI to process (usually 5-30 seconds)
+7. Wait 5-15 seconds for the AI to process
 8. Your project will be updated automatically!
 
 ## ✅ What Works
@@ -86,74 +61,68 @@ This starts the builder on **http://localhost:3000**
 - ↩️ Undo/redo support
 - 💾 Auto-save after enhancement
 
-## 🔧 Configuration (Optional)
+## 🔧 Configuration
 
-If you need to change the Chef API URL:
+If you need to change the AI model, edit `platform/client/app/api/builder/enhance/route.ts`:
 
-```bash
-# In /workspace/platform/client/.env.local
-NEXT_PUBLIC_CHEF_API_URL=http://localhost:5173/api/chat
+```typescript
+// Change this line:
+const model = genAI.getGenerativeModel({ model: 'gemini-2.5-pro' });
+
+// To use a different model:
+const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
 ```
 
 ## 🐛 Troubleshooting
 
-### Enhancement button doesn't respond
-- **Check**: Is Chef backend running on port 5173?
-- **Check**: Is Convex backend running?
-- **Check**: Browser console for errors (F12)
+### "AI service not configured" error
+- Make sure you added `GOOGLE_API_KEY` to `.env.local`
+- Restart the dev server after adding the key
 
-### "Failed to enhance project" error
-- **Check**: Chef backend logs in Terminal 1
-- **Check**: API key is configured (ANTHROPIC_API_KEY, OPENAI_API_KEY, etc.)
-- **Check**: Your prompt is clear and specific
+### "Rate limit exceeded" error
+- Wait a moment and try again
+- Consider using a paid Google AI account for higher limits
 
-### API keys not working
-Add API keys to `/workspace/chatbot/.env.local`:
-```env
-ANTHROPIC_API_KEY=<your-key>
-OPENAI_API_KEY=<your-key>
-GOOGLE_API_KEY=<your-key>
+### "Failed to parse AI response" error
+- Try a simpler enhancement request
+- The AI might have returned invalid JSON
+- Check the browser console for more details
+
+### Port 3000 already in use
+```bash
+# Kill the process on port 3000
+npx kill-port 3000
+
+# Or use a different port
+npm run dev -- -p 3001
 ```
 
-## 📚 Example Enhancement Requests
+## API Details
 
-### Add New Sections
-- "Add a testimonials section with 3 customer reviews"
-- "Create a pricing section with 3 tiers: Basic, Pro, Enterprise"
-- "Add a FAQ section with 5 common questions"
+- **Endpoint**: `/api/builder/enhance`
+- **Method**: POST
+- **Body**: `{ project, enhancementPrompt }`
+- **Response**: `{ success: true, project: enhancedProject }`
 
-### Improve Design
-- "Make the hero section more modern with better typography"
-- "Improve spacing and use a consistent color scheme"
-- "Add smooth animations to the buttons"
+## Files Modified
 
-### Add Interactive Elements
-- "Add a contact form with name, email, phone, and message"
-- "Create a newsletter signup form"
-- "Add a search bar in the header"
+1. `platform/client/app/api/builder/enhance/route.ts` - Direct Google AI integration
+2. `platform/client/components/builder/EnhanceWithAI.tsx` - UI component
+3. `platform/client/components/builder/BuilderTopBar.tsx` - Added button with loading state
 
-## 🎯 Tips for Best Results
+## Cost
 
-1. **Be Specific**: "Add a contact form with name, email, and message fields" is better than "improve the page"
-2. **One Thing at a Time**: Make incremental changes rather than requesting everything at once
-3. **Use Examples**: The 6 pre-configured examples are tested and work well
-4. **Review Changes**: Always review what the AI added before saving
-5. **Use Undo**: If you don't like a change, just press Ctrl+Z (or use the undo button)
+Google Gemini 2.5 Pro pricing:
+- **Free**: 15 requests per minute, 1500 per day
+- **Paid**: $0.075 per 1M input tokens, $0.30 per 1M output tokens
 
-## 🔒 Security Note
+For most users, the free tier is more than enough!
 
-Your project data is sent to the Chef AI agent for processing. In this local setup:
-- Data stays on your machine
-- Chef runs locally (not in the cloud)
-- API keys are stored in local environment variables
+## Next Steps
 
-## 🚀 Next Steps
+- Try different enhancement prompts
+- Use undo/redo to experiment
+- Save your enhanced projects
+- Deploy to staging when ready
 
-Once you're comfortable with the enhancement feature:
-- Try combining multiple enhancements
-- Export your projects as Next.js apps
-- Deploy to staging/production environments
-
----
-
-**Need help?** Check the browser console (F12) and terminal logs for error messages.
+Enjoy building with AI! 🚀

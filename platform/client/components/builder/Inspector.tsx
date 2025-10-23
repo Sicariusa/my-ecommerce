@@ -16,6 +16,7 @@ import { useBuilderStore } from '@/lib/stores/useBuilderStore';
 import { ComponentNode } from '@/lib/schema';
 import { ChevronDown, Palette, Layout, Type, Box, Sparkles, Code2, Upload, Link as LinkIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { EnhanceWithAI } from './EnhanceWithAI';
 
 interface InspectorProps {
     className?: string;
@@ -169,6 +170,158 @@ function BoxModelEditor({
 }
 
 /**
+ * Get component-specific enhancement suggestions
+ */
+function getComponentSuggestions(componentType: string, metadata?: ComponentNode['metadata']): string[] {
+    const componentName = metadata?.name || componentType;
+    
+    switch (componentType) {
+        case 'Section':
+            if (componentName.toLowerCase().includes('header')) {
+                return [
+                    'Add a navigation menu with dropdown items',
+                    'Include a logo and search bar',
+                    'Add social media icons',
+                    'Make it sticky/fixed on scroll',
+                    'Add a mobile hamburger menu'
+                ];
+            } else if (componentName.toLowerCase().includes('footer')) {
+                return [
+                    'Add multiple columns with links',
+                    'Include social media links',
+                    'Add newsletter signup form',
+                    'Include company information and copyright',
+                    'Add contact information'
+                ];
+            } else if (componentName.toLowerCase().includes('hero')) {
+                return [
+                    'Add a compelling headline and subheading',
+                    'Include a call-to-action button',
+                    'Add background image or video',
+                    'Include trust indicators or testimonials',
+                    'Add animated elements or effects'
+                ];
+            } else {
+                return [
+                    'Add more content sections',
+                    'Improve spacing and layout',
+                    'Add background colors or images',
+                    'Include interactive elements',
+                    'Add responsive design improvements'
+                ];
+            }
+        
+        case 'Text':
+            return [
+                'Improve typography and readability',
+                'Add emphasis with bold or italic text',
+                'Include relevant links or call-to-actions',
+                'Optimize for mobile readability',
+                'Add text animations or effects'
+            ];
+        
+        case 'Heading':
+            return [
+                'Improve hierarchy and structure',
+                'Add better visual styling',
+                'Include relevant keywords for SEO',
+                'Add hover effects or animations',
+                'Optimize font size and spacing'
+            ];
+        
+        case 'Button':
+            return [
+                'Improve button styling and colors',
+                'Add hover and focus states',
+                'Include loading states',
+                'Add icons or visual elements',
+                'Improve accessibility and contrast'
+            ];
+        
+        case 'Image':
+            return [
+                'Add image optimization and lazy loading',
+                'Include image captions or alt text',
+                'Add hover effects or overlays',
+                'Implement responsive image sizing',
+                'Add image galleries or carousels'
+            ];
+        
+        case 'Grid':
+            return [
+                'Improve grid layout and spacing',
+                'Add responsive breakpoints',
+                'Include grid item animations',
+                'Add drag-and-drop functionality',
+                'Improve visual hierarchy'
+            ];
+        
+        case 'List':
+            return [
+                'Add custom list styling',
+                'Include interactive list items',
+                'Add list animations',
+                'Improve list hierarchy',
+                'Add filtering or sorting options'
+            ];
+        
+        case 'Form':
+            return [
+                'Add form validation and error handling',
+                'Improve form styling and UX',
+                'Include progress indicators',
+                'Add form field animations',
+                'Implement accessibility improvements'
+            ];
+        
+        case 'Link':
+            return [
+                'Add hover effects and transitions',
+                'Improve link styling and colors',
+                'Include external link indicators',
+                'Add link previews or tooltips',
+                'Improve accessibility and focus states'
+            ];
+        
+        case 'Container':
+            return [
+                'Improve container responsiveness',
+                'Add better spacing and padding',
+                'Include container animations',
+                'Add background effects',
+                'Improve content organization'
+            ];
+        
+        case 'Div':
+            return [
+                'Add specific styling and layout',
+                'Include interactive elements',
+                'Add background or border effects',
+                'Improve spacing and alignment',
+                'Add hover or focus states'
+            ];
+        
+        case 'Body':
+            return [
+                'Improve overall page layout',
+                'Add global styling and themes',
+                'Include page transitions',
+                'Add loading states',
+                'Improve accessibility and SEO'
+            ];
+        
+        default:
+            return [
+                'Improve component styling',
+                'Add interactive elements',
+                'Enhance user experience',
+                'Add animations or effects',
+                'Improve accessibility'
+            ];
+    }
+}
+
+/**
  * Main Inspector component
  */
 export function Inspector({ className = '' }: InspectorProps) {
@@ -185,6 +338,7 @@ export function Inspector({ className = '' }: InspectorProps) {
 
     const [activeSection, setActiveSection] = useState<string[]>([
         'properties',
+        'ai-enhancement',
         'layout',
         'spacing',
     ]);
@@ -755,6 +909,37 @@ export function Inspector({ className = '' }: InspectorProps) {
                                     />
                                 </>
                             )}
+                        </Accordion.Content>
+                    </Accordion.Item>
+
+                    {/* AI Enhancement Section */}
+                    <Accordion.Item value="ai-enhancement" className="border-b border-gray-200 dark:border-gray-700">
+                        <Accordion.Header>
+                            <Accordion.Trigger className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-gray-900/50 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors group">
+                                <div className="flex items-center gap-2">
+                                    <Sparkles className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                                    <span className="text-sm font-medium text-gray-900 dark:text-white">
+                                        AI Enhancement
+                                    </span>
+                                </div>
+                                <ChevronDown className="w-4 h-4 text-gray-600 dark:text-gray-400 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                            </Accordion.Trigger>
+                        </Accordion.Header>
+                        <Accordion.Content className="px-4 py-3 data-[state=open]:animate-slide-in">
+                            <div className="space-y-3">
+                                <p className="text-xs text-gray-600 dark:text-gray-400">
+                                    Enhance this {selectedNode.type.toLowerCase()} component with AI-powered suggestions
+                                </p>
+                                <EnhanceWithAI 
+                                    project={project}
+                                    onProjectEnhanced={(enhancedProject) => {
+                                        // Update the project in the store
+                                        useBuilderStore.getState().setProject(enhancedProject);
+                                        toast.success('Component enhanced successfully!');
+                                    }}
+                                    customSuggestions={getComponentSuggestions(selectedNode.type, selectedNode.metadata)}
+                                />
+                            </div>
                         </Accordion.Content>
                     </Accordion.Item>
 

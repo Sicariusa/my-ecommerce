@@ -12,8 +12,8 @@
           "type": "Body",
           "props": {},
           "styles": {
-            "backgroundColor": "#f9fafb",
-            "color": "#111827",
+            "backgroundColor": "#ffffff",
+            "color": "#000000",
             "fontFamily": "system-ui, -apple-system, sans-serif",
             "minHeight": "100vh"
           },
@@ -31,10 +31,10 @@
               "styles": {
                 "padding": "16px 24px",
                 "backgroundColor": "#ffffff",
+                "borderBottom": "1px solid #e5e7eb",
                 "display": "flex",
                 "justifyContent": "space-between",
-                "alignItems": "center",
-                "boxShadow": "0 1px 3px rgba(0,0,0,0.05)"
+                "alignItems": "center"
               },
               "metadata": {
                 "name": "Header"
@@ -64,53 +64,50 @@
                   "props": {},
                   "styles": {
                     "display": "flex",
-                    "gap": "32px"
+                    "gap": "24px"
                   },
                   "metadata": {
                     "name": "Navigation"
                   },
                   "children": [
                     {
-                      "id": "link-1715882000001-a1b2",
-                      "type": "Link",
+                      "id": "nav-link-1",
+                      "type": "Text",
                       "props": {
                         "text": "Home",
-                        "href": "/"
+                        "tag": "a"
                       },
                       "styles": {
-                        "color": "#374151",
+                        "color": "#4b5563",
                         "textDecoration": "none",
-                        "fontWeight": "500",
                         "cursor": "pointer"
                       },
                       "children": []
                     },
                     {
-                      "id": "link-1715882000002-c3d4",
-                      "type": "Link",
+                      "id": "nav-link-2",
+                      "type": "Text",
                       "props": {
                         "text": "About",
-                        "href": "/about"
+                        "tag": "a"
                       },
                       "styles": {
-                        "color": "#374151",
+                        "color": "#4b5563",
                         "textDecoration": "none",
-                        "fontWeight": "500",
                         "cursor": "pointer"
                       },
                       "children": []
                     },
                     {
-                      "id": "link-1715882000003-e5f6",
-                      "type": "Link",
+                      "id": "nav-link-3",
+                      "type": "Text",
                       "props": {
                         "text": "Contact",
-                        "href": "/contact"
+                        "tag": "a"
                       },
                       "styles": {
-                        "color": "#374151",
+                        "color": "#4b5563",
                         "textDecoration": "none",
-                        "fontWeight": "500",
                         "cursor": "pointer"
                       },
                       "children": []
@@ -124,7 +121,9 @@
               "type": "Section",
               "props": {},
               "styles": {
-                "padding": "96px 24px"
+                "padding": "64px 24px",
+                "backgroundColor": "#f8fafc",
+                "textAlign": "center"
               },
               "metadata": {
                 "name": "Hero Section"
@@ -132,106 +131,60 @@
               "children": [
                 {
                   "id": "hero-container-1",
-                  "type": "Grid",
+                  "type": "Div",
                   "props": {},
                   "styles": {
                     "maxWidth": "1200px",
-                    "margin": "0 auto",
-                    "display": "grid",
-                    "gridTemplateColumns": "repeat(2, 1fr)",
-                    "gap": "64px",
-                    "alignItems": "center"
+                    "margin": "0 auto"
                   },
                   "children": [
                     {
-                      "id": "div-1715882000004-g7h8",
-                      "type": "Div",
-                      "props": {},
-                      "styles": {
-                        "display": "flex",
-                        "flexDirection": "column"
+                      "id": "h1-1",
+                      "type": "Text",
+                      "props": {
+                        "text": "Welcome to Our Platform",
+                        "tag": "h1"
                       },
-                      "children": [
-                        {
-                          "id": "h1-1",
-                          "type": "Text",
-                          "props": {
-                            "text": "Build stunning websites, instantly.",
-                            "tag": "h1"
-                          },
-                          "styles": {
-                            "fontSize": "56px",
-                            "fontWeight": "800",
-                            "color": "#111827",
-                            "marginBottom": "24px",
-                            "lineHeight": "1.2"
-                          },
-                          "children": []
-                        },
-                        {
-                          "id": "subtitle-1",
-                          "type": "Text",
-                          "props": {
-                            "text": "Our no-code platform empowers you to create and launch beautiful, responsive websites without writing a single line of code.",
-                            "tag": "p"
-                          },
-                          "styles": {
-                            "fontSize": "20px",
-                            "color": "#4b5563",
-                            "marginBottom": "40px",
-                            "lineHeight": "1.6"
-                          },
-                          "children": []
-                        },
-                        {
-                          "id": "div-1715882000005-i9j0",
-                          "type": "Div",
-                          "props": {},
-                          "styles": {
-                            "display": "flex",
-                            "gap": "16px"
-                          },
-                          "children": [
-                            {
-                              "id": "button-1715882000006-k1l2",
-                              "type": "Button",
-                              "props": {
-                                "text": "Get Started Free",
-                                "link": "/signup"
-                              },
-                              "styles": {
-                                "padding": "14px 32px",
-                                "fontSize": "16px",
-                                "fontWeight": "600",
-                                "backgroundColor": "#2563eb",
-                                "color": "#ffffff",
-                                "border": "none",
-                                "borderRadius": "8px",
-                                "cursor": "pointer"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "button-1715882000007-m3n4",
-                              "type": "Button",
-                              "props": {
-                                "text": "Book a Demo"
-                              },
-                              "styles": {
-                                "padding": "14px 32px",
-                                "fontSize": "16px",
-                                "fontWeight": "600",
-                                "backgroundColor": "#ffffff",
-                                "color": "#111827",
-                                "border": "1px solid #d1d5db",
-                                "borderRadius": "8px",
-                                "cursor": "pointer"
-                              },
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
+                      "styles": {
+                        "fontSize": "48px",
+                        "fontWeight": "700",
+                        "color": "#1f2937",
+                        "marginBottom": "16px"
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "subtitle-1",
+                      "type": "Text",
+                      "props": {
+                        "text": "Build amazing websites with our no-code platform",
+                        "tag": "p"
+                      },
+                      "styles": {
+                        "fontSize": "20px",
+                        "color": "#6b7280",
+                        "marginBottom": "32px"
+                      },
+                      "children": []
+                    },
+                    {
+                      "id": "cta-button-1",
+                      "type": "Button",
+                      "props": {
+                        "text": "Get Started"
+                      },
+                      "styles": {
+                        "padding": "12px 32px",
+                        "fontSize": "16px",
+                        "fontWeight": "600",
+                        "backgroundColor": "#3b82f6",
+                        "color": "#ffffff",
+                        "border": "none",
+                        "borderRadius": "8px",
+                        "cursor": "pointer",
+                        "marginBottom": "32px"
+                      },
+                      "children": []
                     },
                     {
                       "id": "hero-image-1",
@@ -242,204 +195,12 @@
                       },
                       "styles": {
                         "width": "100%",
+                        "maxWidth": "800px",
                         "height": "auto",
                         "borderRadius": "12px",
                         "boxShadow": "0 10px 30px rgba(0, 0, 0, 0.1)"
                       },
                       "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "section-1715882000008-o5p6",
-              "type": "Section",
-              "props": {},
-              "styles": {
-                "padding": "96px 24px",
-                "backgroundColor": "#ffffff"
-              },
-              "metadata": {
-                "name": "Features Section"
-              },
-              "children": [
-                {
-                  "id": "div-1715882000009-q7r8",
-                  "type": "Div",
-                  "props": {},
-                  "styles": {
-                    "maxWidth": "1200px",
-                    "margin": "0 auto",
-                    "textAlign": "center"
-                  },
-                  "children": [
-                    {
-                      "id": "text-1715882000010-s9t0",
-                      "type": "Text",
-                      "props": {
-                        "text": "Why Choose Us?",
-                        "tag": "h2"
-                      },
-                      "styles": {
-                        "fontSize": "42px",
-                        "fontWeight": "700",
-                        "color": "#111827",
-                        "marginBottom": "16px"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "text-1715882000011-u1v2",
-                      "type": "Text",
-                      "props": {
-                        "text": "Everything you need to build your online presence.",
-                        "tag": "p"
-                      },
-                      "styles": {
-                        "fontSize": "18px",
-                        "color": "#6b7280",
-                        "marginBottom": "64px",
-                        "maxWidth": "600px",
-                        "margin": "0 auto 64px"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "grid-1715882000012-w3x4",
-                      "type": "Grid",
-                      "props": {},
-                      "styles": {
-                        "display": "grid",
-                        "gridTemplateColumns": "repeat(3, 1fr)",
-                        "gap": "32px",
-                        "textAlign": "left"
-                      },
-                      "children": [
-                        {
-                          "id": "div-1715882000013-y5z6",
-                          "type": "Div",
-                          "props": {},
-                          "styles": {
-                            "padding": "24px",
-                            "border": "1px solid #e5e7eb",
-                            "borderRadius": "12px",
-                            "backgroundColor": "#f9fafb"
-                          },
-                          "children": [
-                            {
-                              "id": "text-1715882000016-e6f7",
-                              "type": "Text",
-                              "props": {
-                                "text": "Intuitive Builder",
-                                "tag": "h3"
-                              },
-                              "styles": {
-                                "fontSize": "20px",
-                                "fontWeight": "600",
-                                "marginBottom": "8px",
-                                "color": "#111827"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "text-1715882000017-g8h9",
-                              "type": "Text",
-                              "props": {
-                                "text": "A simple drag-and-drop interface that makes website creation a breeze.",
-                                "tag": "p"
-                              },
-                              "styles": {
-                                "color": "#4b5563",
-                                "lineHeight": "1.6"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "id": "div-1715882000014-a2b3",
-                          "type": "Div",
-                          "props": {},
-                          "styles": {
-                            "padding": "24px",
-                            "border": "1px solid #e5e7eb",
-                            "borderRadius": "12px",
-                            "backgroundColor": "#f9fafb"
-                          },
-                          "children": [
-                            {
-                              "id": "text-1715882000018-i0j1",
-                              "type": "Text",
-                              "props": {
-                                "text": "Responsive Design",
-                                "tag": "h3"
-                              },
-                              "styles": {
-                                "fontSize": "20px",
-                                "fontWeight": "600",
-                                "marginBottom": "8px",
-                                "color": "#111827"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "text-1715882000019-k2l3",
-                              "type": "Text",
-                              "props": {
-                                "text": "Your site will look perfect on any device, from desktops to mobile phones.",
-                                "tag": "p"
-                              },
-                              "styles": {
-                                "color": "#4b5563",
-                                "lineHeight": "1.6"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "id": "div-1715882000015-c4d5",
-                          "type": "Div",
-                          "props": {},
-                          "styles": {
-                            "padding": "24px",
-                            "border": "1px solid #e5e7eb",
-                            "borderRadius": "12px",
-                            "backgroundColor": "#f9fafb"
-                          },
-                          "children": [
-                            {
-                              "id": "text-1715882000020-m4n5",
-                              "type": "Text",
-                              "props": {
-                                "text": "Fast & Secure",
-                                "tag": "h3"
-                              },
-                              "styles": {
-                                "fontSize": "20px",
-                                "fontWeight": "600",
-                                "marginBottom": "8px",
-                                "color": "#111827"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "text-1715882000021-o6p7",
-                              "type": "Text",
-                              "props": {
-                                "text": "Blazing-fast load times and top-tier security to keep your site and visitors safe.",
-                                "tag": "p"
-                              },
-                              "styles": {
-                                "color": "#4b5563",
-                                "lineHeight": "1.6"
-                              },
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
                     }
                   ]
                 }
@@ -452,630 +213,38 @@
                 "role": "contentinfo"
               },
               "styles": {
-                "padding": "48px 24px",
+                "padding": "32px 24px",
                 "backgroundColor": "#1f2937",
-                "color": "#ffffff"
+                "color": "#ffffff",
+                "textAlign": "center"
               },
               "metadata": {
                 "name": "Footer"
               },
               "children": [
                 {
-                  "id": "div-1715882000022-q8r9",
-                  "type": "Div",
-                  "props": {},
-                  "styles": {
-                    "maxWidth": "1200px",
-                    "margin": "0 auto",
-                    "display": "flex",
-                    "justifyContent": "space-between",
-                    "alignItems": "center"
+                  "id": "footer-text-1",
+                  "type": "Text",
+                  "props": {
+                    "text": "© 2025 My Brand. All rights reserved.",
+                    "tag": "p"
                   },
-                  "children": [
-                    {
-                      "id": "footer-text-1",
-                      "type": "Text",
-                      "props": {
-                        "text": "© 2025 My Brand. All rights reserved.",
-                        "tag": "p"
-                      },
-                      "styles": {
-                        "margin": "0",
-                        "color": "#9ca3af"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "div-1715882000023-s0t1",
-                      "type": "Div",
-                      "props": {},
-                      "styles": {
-                        "display": "flex",
-                        "gap": "20px"
-                      },
-                      "children": [
-                        {
-                          "id": "link-1715882000024-u2v3",
-                          "type": "Link",
-                          "props": {
-                            "text": "Facebook",
-                            "href": "#"
-                          },
-                          "styles": {
-                            "color": "#9ca3af",
-                            "textDecoration": "none"
-                          },
-                          "children": []
-                        },
-                        {
-                          "id": "link-1715882000025-w4x5",
-                          "type": "Link",
-                          "props": {
-                            "text": "Twitter",
-                            "href": "#"
-                          },
-                          "styles": {
-                            "color": "#9ca3af",
-                            "textDecoration": "none"
-                          },
-                          "children": []
-                        },
-                        {
-                          "id": "link-1715882000026-y6z7",
-                          "type": "Link",
-                          "props": {
-                            "text": "LinkedIn",
-                            "href": "#"
-                          },
-                          "styles": {
-                            "color": "#9ca3af",
-                            "textDecoration": "none"
-                          },
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
+                  "styles": {
+                    "margin": "0",
+                    "color": "#9ca3af"
+                  },
+                  "children": []
                 }
               ]
             }
           ]
         }
       ]
-    },
-    {
-      "id": "page-1761247816055",
-      "name": "about us",
-      "slug": "/about",
-      "tree": [
-        {
-          "id": "body-1715882100000-4b3c",
-          "type": "Body",
-          "props": {},
-          "styles": {
-            "backgroundColor": "#f9fafb",
-            "color": "#111827",
-            "fontFamily": "system-ui, -apple-system, sans-serif",
-            "minHeight": "100vh"
-          },
-          "metadata": {
-            "name": "Body"
-          },
-          "children": [
-            {
-              "id": "section-1715882100001-f8e2",
-              "type": "Section",
-              "props": {
-                "role": "banner"
-              },
-              "styles": {
-                "padding": "16px 24px",
-                "backgroundColor": "#ffffff",
-                "display": "flex",
-                "justifyContent": "space-between",
-                "alignItems": "center",
-                "boxShadow": "0 1px 3px rgba(0,0,0,0.05)"
-              },
-              "metadata": {
-                "name": "Header"
-              },
-              "children": [
-                {
-                  "id": "text-1715882100002-a1b2",
-                  "type": "Text",
-                  "props": {
-                    "text": "My Brand",
-                    "tag": "h1"
-                  },
-                  "styles": {
-                    "fontSize": "24px",
-                    "fontWeight": "700",
-                    "color": "#1f2937",
-                    "margin": "0"
-                  },
-                  "metadata": {},
-                  "children": []
-                },
-                {
-                  "id": "div-1715882100003-c3d4",
-                  "type": "Div",
-                  "props": {},
-                  "styles": {
-                    "display": "flex",
-                    "gap": "32px"
-                  },
-                  "metadata": {
-                    "name": "Navigation"
-                  },
-                  "children": [
-                    {
-                      "id": "link-1715882100004-e5f6",
-                      "type": "Link",
-                      "props": {
-                        "text": "Home",
-                        "href": "/"
-                      },
-                      "styles": {
-                        "color": "#374151",
-                        "textDecoration": "none",
-                        "fontWeight": "500"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "link-1715882100005-g7h8",
-                      "type": "Link",
-                      "props": {
-                        "text": "About",
-                        "href": "/about"
-                      },
-                      "styles": {
-                        "color": "#374151",
-                        "textDecoration": "none",
-                        "fontWeight": "500"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "link-1715882100006-i9j0",
-                      "type": "Link",
-                      "props": {
-                        "text": "Contact",
-                        "href": "/contact"
-                      },
-                      "styles": {
-                        "color": "#374151",
-                        "textDecoration": "none",
-                        "fontWeight": "500"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "section-1715882100007-k1l2",
-              "type": "Section",
-              "props": {},
-              "styles": {
-                "padding": "96px 24px",
-                "backgroundColor": "#ffffff"
-              },
-              "metadata": {
-                "name": "About Content Section"
-              },
-              "children": [
-                {
-                  "id": "container-1715882100008-m3n4",
-                  "type": "Container",
-                  "props": {},
-                  "styles": {
-                    "maxWidth": "1000px",
-                    "margin": "0 auto",
-                    "textAlign": "center"
-                  },
-                  "children": [
-                    {
-                      "id": "text-1715882100009-o5p6",
-                      "type": "Text",
-                      "props": {
-                        "text": "Our Story",
-                        "tag": "h1"
-                      },
-                      "styles": {
-                        "fontSize": "48px",
-                        "fontWeight": "800",
-                        "color": "#111827",
-                        "marginBottom": "24px"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "text-1715882100010-q7r8",
-                      "type": "Text",
-                      "props": {
-                        "text": "We started My Brand with a simple mission: to empower creators and entrepreneurs to build their online presence effortlessly.",
-                        "tag": "p"
-                      },
-                      "styles": {
-                        "fontSize": "20px",
-                        "color": "#4b5563",
-                        "lineHeight": "1.6",
-                        "marginBottom": "48px"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "image-1715882100011-s9t0",
-                      "type": "Image",
-                      "props": {
-                        "src": "/placeholder-team.jpg",
-                        "alt": "The My Brand team working together"
-                      },
-                      "styles": {
-                        "width": "100%",
-                        "borderRadius": "12px",
-                        "marginBottom": "48px",
-                        "boxShadow": "0 10px 30px rgba(0, 0, 0, 0.1)"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "text-1715882100012-u1v2",
-                      "type": "Text",
-                      "props": {
-                        "text": "Founded in 2024, our journey began in a small garage with a big idea. We saw a gap in the market for a website builder that was not only powerful and flexible but also incredibly intuitive and fun to use. We believe that everyone should have the ability to bring their ideas to life online, without needing to be a tech wizard.",
-                        "tag": "p"
-                      },
-                      "styles": {
-                        "textAlign": "left",
-                        "fontSize": "18px",
-                        "color": "#374151",
-                        "lineHeight": "1.7",
-                        "marginBottom": "24px"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "text-1715882100013-w3x4",
-                      "type": "Text",
-                      "props": {
-                        "text": "Today, we are proud to have helped thousands of users launch their dream websites. Our team is a passionate group of designers, developers, and support specialists dedicated to your success. We are constantly innovating and adding new features to ensure My Brand remains the best platform for your creative projects.",
-                        "tag": "p"
-                      },
-                      "styles": {
-                        "textAlign": "left",
-                        "fontSize": "18px",
-                        "color": "#374151",
-                        "lineHeight": "1.7"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "section-1715882100014-y5z6",
-              "type": "Section",
-              "props": {},
-              "styles": {
-                "padding": "96px 24px",
-                "backgroundColor": "#f9fafb"
-              },
-              "metadata": {
-                "name": "Team Section"
-              },
-              "children": [
-                {
-                  "id": "container-1715882100015-a2b3",
-                  "type": "Container",
-                  "props": {},
-                  "styles": {
-                    "maxWidth": "1200px",
-                    "margin": "0 auto",
-                    "textAlign": "center"
-                  },
-                  "children": [
-                    {
-                      "id": "text-1715882100016-c4d5",
-                      "type": "Text",
-                      "props": {
-                        "text": "Meet the Team",
-                        "tag": "h2"
-                      },
-                      "styles": {
-                        "fontSize": "42px",
-                        "fontWeight": "700",
-                        "marginBottom": "64px",
-                        "color": "#111827"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "grid-1715882100017-e6f7",
-                      "type": "Grid",
-                      "props": {},
-                      "styles": {
-                        "display": "grid",
-                        "gridTemplateColumns": "repeat(3, 1fr)",
-                        "gap": "48px"
-                      },
-                      "children": [
-                        {
-                          "id": "div-1715882100018-g8h9",
-                          "type": "Div",
-                          "props": {},
-                          "styles": {
-                            "textAlign": "center"
-                          },
-                          "children": [
-                            {
-                              "id": "image-1715882100019-i0j1",
-                              "type": "Image",
-                              "props": {
-                                "src": "/placeholder-person-1.jpg",
-                                "alt": "Jane Doe"
-                              },
-                              "styles": {
-                                "width": "160px",
-                                "height": "160px",
-                                "borderRadius": "50%",
-                                "objectFit": "cover",
-                                "marginBottom": "16px",
-                                "display": "inline-block"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "text-1715882100020-k2l3",
-                              "type": "Text",
-                              "props": {
-                                "text": "Jane Doe",
-                                "tag": "h3"
-                              },
-                              "styles": {
-                                "fontSize": "22px",
-                                "fontWeight": "600",
-                                "marginBottom": "4px",
-                                "color": "#1f2937"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "text-1715882100021-m4n5",
-                              "type": "Text",
-                              "props": {
-                                "text": "Co-Founder & CEO",
-                                "tag": "p"
-                              },
-                              "styles": {
-                                "color": "#6b7280"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "id": "div-1715882100022-o6p7",
-                          "type": "Div",
-                          "props": {},
-                          "styles": {
-                            "textAlign": "center"
-                          },
-                          "children": [
-                            {
-                              "id": "image-1715882100023-q8r9",
-                              "type": "Image",
-                              "props": {
-                                "src": "/placeholder-person-2.jpg",
-                                "alt": "John Smith"
-                              },
-                              "styles": {
-                                "width": "160px",
-                                "height": "160px",
-                                "borderRadius": "50%",
-                                "objectFit": "cover",
-                                "marginBottom": "16px",
-                                "display": "inline-block"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "text-1715882100024-s0t1",
-                              "type": "Text",
-                              "props": {
-                                "text": "John Smith",
-                                "tag": "h3"
-                              },
-                              "styles": {
-                                "fontSize": "22px",
-                                "fontWeight": "600",
-                                "marginBottom": "4px",
-                                "color": "#1f2937"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "text-1715882100025-u2v3",
-                              "type": "Text",
-                              "props": {
-                                "text": "Co-Founder & CTO",
-                                "tag": "p"
-                              },
-                              "styles": {
-                                "color": "#6b7280"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "id": "div-1715882100026-w4x5",
-                          "type": "Div",
-                          "props": {},
-                          "styles": {
-                            "textAlign": "center"
-                          },
-                          "children": [
-                            {
-                              "id": "image-1715882100027-y6z7",
-                              "type": "Image",
-                              "props": {
-                                "src": "/placeholder-person-3.jpg",
-                                "alt": "Emily White"
-                              },
-                              "styles": {
-                                "width": "160px",
-                                "height": "160px",
-                                "borderRadius": "50%",
-                                "objectFit": "cover",
-                                "marginBottom": "16px",
-                                "display": "inline-block"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "text-1715882100028-a8b9",
-                              "type": "Text",
-                              "props": {
-                                "text": "Emily White",
-                                "tag": "h3"
-                              },
-                              "styles": {
-                                "fontSize": "22px",
-                                "fontWeight": "600",
-                                "marginBottom": "4px",
-                                "color": "#1f2937"
-                              },
-                              "children": []
-                            },
-                            {
-                              "id": "text-1715882100029-c0d1",
-                              "type": "Text",
-                              "props": {
-                                "text": "Head of Design",
-                                "tag": "p"
-                              },
-                              "styles": {
-                                "color": "#6b7280"
-                              },
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "id": "footer-1715882100030-e2f3",
-              "type": "Section",
-              "props": {
-                "role": "contentinfo"
-              },
-              "styles": {
-                "padding": "48px 24px",
-                "backgroundColor": "#1f2937",
-                "color": "#ffffff"
-              },
-              "metadata": {
-                "name": "Footer"
-              },
-              "children": [
-                {
-                  "id": "div-1715882100031-g4h5",
-                  "type": "Div",
-                  "props": {},
-                  "styles": {
-                    "maxWidth": "1200px",
-                    "margin": "0 auto",
-                    "display": "flex",
-                    "justifyContent": "space-between",
-                    "alignItems": "center"
-                  },
-                  "children": [
-                    {
-                      "id": "text-1715882100032-i6j7",
-                      "type": "Text",
-                      "props": {
-                        "text": "© 2025 My Brand. All rights reserved.",
-                        "tag": "p"
-                      },
-                      "styles": {
-                        "margin": "0",
-                        "color": "#9ca3af"
-                      },
-                      "children": []
-                    },
-                    {
-                      "id": "div-1715882100033-k8l9",
-                      "type": "Div",
-                      "props": {},
-                      "styles": {
-                        "display": "flex",
-                        "gap": "20px"
-                      },
-                      "children": [
-                        {
-                          "id": "link-1715882100034-m0n1",
-                          "type": "Link",
-                          "props": {
-                            "text": "Facebook",
-                            "href": "#"
-                          },
-                          "styles": {
-                            "color": "#9ca3af",
-                            "textDecoration": "none"
-                          },
-                          "children": []
-                        },
-                        {
-                          "id": "link-1715882100035-o2p3",
-                          "type": "Link",
-                          "props": {
-                            "text": "Twitter",
-                            "href": "#"
-                          },
-                          "styles": {
-                            "color": "#9ca3af",
-                            "textDecoration": "none"
-                          },
-                          "children": []
-                        },
-                        {
-                          "id": "link-1715882100036-q4r5",
-                          "type": "Link",
-                          "props": {
-                            "text": "LinkedIn",
-                            "href": "#"
-                          },
-                          "styles": {
-                            "color": "#9ca3af",
-                            "textDecoration": "none"
-                          },
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "metadata": {
-        "order": 1
-      }
     }
   ],
   "metadata": {
-    "createdAt": "2025-10-23T19:23:27.026Z",
-    "updatedAt": "2025-10-23T19:31:59.819Z",
+    "createdAt": "2025-10-23T20:15:19.437Z",
+    "updatedAt": "2025-10-23T20:17:35.385Z",
     "description": "A sample landing page template with Body root, header, hero, and footer",
     "environment": "builder"
   }
