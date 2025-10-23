@@ -4,34 +4,58 @@
 
 Follow these steps to use the "Enhance with AI" feature in the website builder:
 
+## Prerequisites
+
+1. Node.js (v18 or higher)
+2. pnpm (for Chef backend)
+3. A Convex account (free at https://convex.dev)
+4. An Anthropic API key (or OpenAI, Google, etc.)
+
 ## Step 1: Start the Chef AI Backend
 
 The Chef AI agent must be running for enhancement to work.
 
 ```bash
 # Terminal 1 - Chef Backend
-cd /workspace/chatbot
+cd chatbot
 pnpm install  # Only needed first time
+
+# Create .env.local with your API keys
+echo 'VITE_CONVEX_URL=placeholder' >> .env.local
+echo 'ANTHROPIC_API_KEY=your_key_here' >> .env.local
+
+# Start the frontend
 pnpm run dev
 ```
 
-This starts the Chef AI agent on **http://localhost:5173**
+This starts the Chef AI agent on **http://localhost:5173** or **http://127.0.0.1:5173**
 
 ## Step 2: Start Convex (Required for Chef)
 
 ```bash
-# Terminal 2 - Convex Backend
-cd /workspace/chatbot
+# Terminal 2 - Convex Backend  
+cd chatbot
 npx convex dev
 ```
 
-Note: You'll need to set up a Convex project first. Follow the prompts.
+**First time setup**: Follow the prompts to:
+- Create a Convex project
+- Link it to your account
+- This will update your `.env.local` with the correct `VITE_CONVEX_URL`
 
-## Step 3: Start the Platform/Builder
+## Step 3: Set up Chef Authentication
+
+You need to sign into Chef before the builder can use it:
+
+1. Open **http://127.0.0.1:5173** in your browser (use 127.0.0.1, not localhost)
+2. Sign in with your Convex account
+3. Keep this tab open (Chef session needed for API calls)
+
+## Step 4: Start the Platform/Builder
 
 ```bash
 # Terminal 3 - Website Builder
-cd /workspace/platform/client
+cd platform/client
 npm install  # Only needed first time
 npm run dev
 ```

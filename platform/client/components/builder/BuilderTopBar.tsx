@@ -45,6 +45,7 @@ export function BuilderTopBar({ projectId, projectName }: BuilderTopBarProps) {
     const [isEnhanceModalOpen, setIsEnhanceModalOpen] = useState(false);
     const [isPreviewMode, setIsPreviewMode] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
+    const [isDeploying, setIsDeploying] = useState(false);
 
     const project = useBuilderStore((state) => state.project);
     const setProject = useBuilderStore((state) => state.setProject);
@@ -127,6 +128,7 @@ export function BuilderTopBar({ projectId, projectName }: BuilderTopBarProps) {
             toast.error('Add at least one page before deploying');
             return;
         }
+        setIsDeploying(true);
         setIsDeployModalOpen(true);
     };
 
@@ -317,10 +319,17 @@ export function BuilderTopBar({ projectId, projectName }: BuilderTopBarProps) {
                     {/* Deploy to Staging */}
                     <button
                         onClick={handleDeploy}
-                        className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        disabled={isDeploying}
+                        className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        <Rocket className="w-4 h-4" />
-                        <span className="text-sm font-medium">Deploy</span>
+                        {isDeploying ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                            <Rocket className="w-4 h-4" />
+                        )}
+                        <span className="text-sm font-medium">
+                            {isDeploying ? 'Submitting...' : 'Deploy'}
+                        </span>
                     </button>
                 </div>
             </div>
@@ -328,7 +337,10 @@ export function BuilderTopBar({ projectId, projectName }: BuilderTopBarProps) {
             {/* Deployment Modal */}
             <EnhancedDeploymentModal
                 isOpen={isDeployModalOpen}
-                onClose={() => setIsDeployModalOpen(false)}
+                onClose={() => {
+                    setIsDeployModalOpen(false);
+                    setIsDeploying(false);
+                }}
             />
 
             {/* Enhancement Modal */}
