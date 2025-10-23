@@ -227,7 +227,7 @@ Example: `section-1729785420-a7b3c9d2`
 ## Environment Configuration
 
 ### Required Environment Variables
-- `NEXT_PUBLIC_CHEF_API_URL`: URL to Chef agent API (default: `http://localhost:3001/api/chat`)
+- `NEXT_PUBLIC_CHEF_API_URL`: URL to Chef agent API (default: `http://localhost:5173/api/chat`)
 
 ### API Configuration
 - Method: POST

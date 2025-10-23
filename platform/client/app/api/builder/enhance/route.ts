@@ -50,7 +50,7 @@ ${enhancementPrompt}
 Please return the enhanced project JSON.`;
 
     // Call the Chef agent API
-    const chefApiUrl = process.env.NEXT_PUBLIC_CHEF_API_URL || 'http://localhost:3001/api/chat';
+    const chefApiUrl = process.env.NEXT_PUBLIC_CHEF_API_URL || 'http://localhost:5173/api/chat';
     
     const chefResponse = await fetch(chefApiUrl, {
       method: 'POST',
